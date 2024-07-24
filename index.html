@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transhumanizm</title>
+    <style>
+	img:hover {
+            transform: scale(1.1); /* Powiększa obrazek o 10% */
+            transition: transform 0.3s ease; /* Dodaje płynne przejście */
+        }
+        body {
+            background-image: url('tło.jpg');
+            background-size: cover;
+            cursor: url('mouse.png'), auto;
+            font-family: 'Lucida Sans Unicode';
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        .header {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .buttons img {
+            width: flex;
+            height: 90px;
+            transition: transform 0.3s ease;
+        }
+        .buttons img:hover {
+            transform: scale(1.2);
+        }
+
+        h1 {
+            font-size: 60px;
+            margin-bottom: 5px;
+            margin-top: 100px;
+        }
+        .content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .text-section {
+            width: 45%;
+        }
+        .text-section h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        .center-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50vh; /* Można dostosować wysokość według potrzeb */
+            margin-top: 185px;
+            margin-bottom: 80px;
+        }
+        .center-image img {
+            max-width: 70%; /* Zmniejsza szerokość obrazka do 50% kontenera */
+            height: auto; /* Zachowuje proporcje obrazka */
+        }
+        .images {
+            display: flex;
+            justify-content: space-between;
+        }
+        .images img {
+            width: 45%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .images img:hover {
+            transform: scale(1.05);
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s;
+        }
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .overlay.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .project-title-section {
+            font-size: 50px;
+            margin-bottom: 40px;
+            margin-top: 200px;
+            text-align: center;
+        }
+        .project-sections {
+            margin-top: 50px;
+        }
+        .project-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+        .project-section-left {
+            width: 45%;
+        }
+        .project-section-right {
+            width: 45%;
+            text-align: left;
+        }
+        .project-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .project-text {
+            margin-bottom: 10px;
+        }
+        .project-author {
+            font-style: italic;
+        }
+        .anchor-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .anchor-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 10px 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .anchor-links a:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .carousel-container {
+            position: relative;
+            width: 1200px; /* Updated to include margin */
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel img {
+            width: 300px;
+            margin: 0 30px;
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .carousel-button.left {
+            left: 0;
+        }
+        .carousel-button.right {
+            right: 0;
+        }
+        .bibliography-section {
+    background-color: rgba(0, 0, 0, 0.5); /* Połtransparentne tło */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 123px; /* Dostosowanie marginesów do lewej strony */
+}
+
+.bibliography-section ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left; /* Wyrównanie listy punktowej do lewej */
+    margin-left: 0; /* Resetowanie domyślnego marginesu listy */
+}
+
+.bibliography-section ul li {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+.bibliography-list {
+    background-color: rgba(0, 0, 0, 0.5); /* Połtransparentne tło */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 123px; /* Dostosowanie marginesów do lewej strony */
+    display: none; /* Początkowo ukrywamy listę */
+}
+
+.bibliography-list ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left; /* Wyrównanie listy punktowej do lewej */
+    margin-left: 0; /* Resetowanie domyślnego marginesu listy */
+}
+
+.bibliography-list ul li {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.bibliography-list-visible {
+    display: block; /* Pokazujemy listę, gdy jest widoczna */
+}
+.project-title-section#bibliography {
+    font-size: 30px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    text-align: center;
+    transition: transform 0.3s ease; /* Dodajemy efekt przejścia */
+    cursor: pointer; /* Wskazujemy, że sekcja jest interaktywna */
+}
+
+.project-title-section#bibliography:hover {
+    transform: scale(1.1); /* Zwiększenie rozmiaru przy najechaniu */
+}
+.footer {
+    background-color: #040922; /* Fioletowy, ciemny kolor tła */
+    color: #fff; /* Biały kolor tekstu */
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px; /* Odstęp od poprzedniej sekcji */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 14px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="center-image">
+            <img src="transhumanizm.png" alt="Obrazek 1">
+        </div>
+        <div class="buttons">
+            <a href="https://polonistyka.uj.edu.pl/"><img src="p1.png" alt="Przycisk 1"></a>
+            <a href="https://komparatystyka.polonistyka.uj.edu.pl/"><img src="p2.png" alt="Przycisk 2"></a>
+            <a href="https://www.facebook.com/komparatystykaUJ?locale=pl_PL"><img src="p3.png" alt="Przycisk 3"></a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <div class="text-section">
+                <h2>O TRANSHUMANIZMIE</h2>
+                <p>Idea stworzenia istoty ludzkiej od nowa, według innych - lepszych - wyznaczników towarzyszy literaturze od dawna, a swą szczególną realizację uzyskała w ostatnim czasie, gdy do dyskusji filozoficznych zaczęto włączać elementy nauk biologicznych i ścisłych. Nurt transhumanistyczny warto jednak postrzegać w świetle jego kulturowych zapożyczeń: mitu prometejskiego, motywu "ludzi jak/jako bogów",  idei sztucznego człowieka, figury Frankensteina jako naukowca dokonującego transgresji poza naukę, etykę i świadomość swoich czasów czy też licznych prób stworzenia "nowego wspaniałego człowieka" w obrębie najważniejszych dystopii XX i XXI wieku. W tym kontekście marzenia transhumanistów z jednej strony są kontynuacją idei już w humanistyce znanych, ale z drugiej proponują nowe zagadnienia i stawiają nowe pytania zarówno o naturę człowieka, jak i metody poszerzania cech i zdolności poza granice jego natury.</p>
+            </div>
+            <div class="text-section">
+                <h2>O KURSIE</h2>
+                <p>Celem tych zajęć jest zapoznanie studentów z transhumanistyczną ideą "nowej ludzkości" w kontekście XX-XXI-wiecznej tradycji literatury utopijnej (zarówno w jej eutopijnym, jak i dystopijnym oraz postapokaliptycznym kształcie). Na przykładzie tekstów literackich, manifestów transhumanistycznych oraz rozmaitych tekstów kultury będziemy odtwarzać istniejące wyobrażenia "neo-" i "postczłowieka", zderzając ze sobą kreacje fikcyjne i projekty naukowe, czekające na swą realizację, a zatem - eksplorując pogranicze między nauką a literaturą w obrębie antropologii jako dyscypliny łączącej te dwa pola refleksji.</p>
+            </div>
+        </div>
+        <div class="images">
+            <img src="obrazek1.png" alt="Obrazek 1" onclick="showImage(this.src)">
+            <img src="obrazek2.png" alt="Obrazek 2" onclick="showImage(this.src)">
+        </div>
+    </div>
+    <div class="overlay" id="overlay" onclick="hideImage()">
+        <span class="close-btn" onclick="hideImage()">×</span>
+        <img id="overlay-img" src="" alt="Powiększony obrazek">
+    </div>
+    <div class="project-title-section" id="project1">
+        PROJEKTY BADAWCZE
+    </div>
+    <div class="anchor-links">
+        <a href="#project1">Człowiek przyszłości</a>
+        <a href="#project2">Jednostka autorytarna</a>
+        <a href="#project3">O klonowaniu</a>
+        <a href="#project4">Cyfrowa nieśmiertelność</a>
+        <a href="#project5">Narracje o płci</a>
+        <a href="#project6">Odpowiedzialność twórcy</a>
+    </div>
+    <div class="project-sections">
+        <div class="project-section">
+            <div class="project-section-left">
+    <video width="100%" height="650" controls>
+        <source src="higher.mp4" type="video/mp4">
+    </video>
+    <div style="text-align: center">
+        <a href="https://www.youtube.com/watch?v=Pa72zfemAU8&list=PLeumE3xJG7HcY_H7e4PNIU09K1VKdzPBa&index=5" target="_blank">
+            <img src="pro.png" style="border: 0" alt="tekst alternatywny">
+        </a>
+    </div>
+</div>
+            <div class="project-section-right">
+                <div class="project-title">Higher, further, faster, czyli o człowieku przyszłości w kosmosie</div>
+                <div class="project-text">Projekt <em>Higher, Further, Faster, czyli o człowieku przyszłości w kosmosie</em> podejmuje refleksję nad odbiorem literatury science-fiction, by następnie przejść do omówienia kolonialnego aspektu pozaziemskich podróży człowieka oraz relacji Ziemian z mieszkańcami innych planet. Autorzy jako istotną cechę gatunku science-fiction wyróżniają autonomię świata przedstawionego. Kierując się ujęciem Umberto Eco, podkreślają jego strukturalną odmienność realizującą się w światocentrycznym charakterze literatury należącej do tego gatunku. Wskazują również allotopię, jako pojęcie istotne dla rozumienia tej formuły narracji. Niezależność fikcjonalnego świata popierają teorią imperrealizmu Lindy Hutcheon, która zakłada realność fikcyjnego referentu. Podejmując zagadnienie relacji człowieka z istotami pozaziemskimi, autorzy odwołują się do ksenologicznej refleksji Bernharda Waldenfelsa, która wyjaśnia elementy postrzegania nieznanych człowiekowi istot poprzez wprowadzenie rozróżnień pojęć Inny i Obcy oraz obcość relatywna i radykalna. Teorię tę odnoszą do literackich i intermedialnych przykładów: <em>Edenu</em> Stanisława Lema, <em>Roju</em> (reż. T. Miller) – jednego z odcinków antologii <em>Miłość, śmierć i roboty</em> – a także serialu anime <em>W pułapce czasu</em> (reż. P. Vidal). W projekcie podkreślone zostają transhumanistyczne wątki kolonializmu i postawy ekspansywnej człowieka oraz reakcja Obcych na ludzką tendencję do dominacji i antropocentrycznego postrzegania rzeczywistości kosmosu. Istotnym aspektem poruszonym w projekcie jest komunikacja między ludźmi i istotami pozaziemskimi, a także kwestia tego, kto staje się w tej relacji Obcym. Negatywne przykłady tendencji do dominacji i ekspansji zostają skontrastowane z serialem <em>W pułapce czasu</em>, który ukazuje możliwość koegzystencji różnych istot w bioróżnorodnym systemie opartym na demokracji. Autorzy projektu stawiają zasadnicze pytanie o próbę przeniesienia akcentu z perspektywy kolonizacyjnej na eksplorującą, której pierwszym etapem byłaby zmiana języka, jakim posługujemy się w postrzeganiu Innych.</div>
+                <div class="project-author">Autorzy: Karolina Majcherek, Jakub Polakowski</div>
+            </div>
+        </div>
+        <div class="project-section" id="project2">
+            <div class="project-section-left">
+            <video width="100%" height="650" controls>
+                <source src="jednostka.mp4" type="video/mp4">
+            </video>
+<div style="text-align: center">
+        <a href="https://www.youtube.com/watch?v=7wfCtzlXg9s&list=PLeumE3xJG7HcY_H7e4PNIU09K1VKdzPBa&index=4" target="_blank">
+            <img src="pro.png" style="border: 0" alt="tekst alternatywny">
+        </a>
+    </div>
+            </div>
+            <div class="project-section-right">
+                <div class="project-title">Jednostka autorytarna w koncepcji transhumanizmu (w kontekście dystopii)</div>
+                <div class="project-text">Projekt <em>Jednostka autorytarna w koncepcji transhumanizmu</em> porusza temat wpływu postępu technologicznego na kształtowanie się jednostek autorytarnych. Autorki analizują to zagadnienie, skupiając się głównie na książce <em>Nowy Głos. Nowa Rzeczywistość</em> M. Puzio oraz filmie <em>Igrzyska Śmierci</em> reż. G. Rossa, które przedstawiają różne wizje literackie dotyczące tego tematu. Na wstępie autorki wyjaśniają dwa kluczowe pojęcia – dystopię i utopię – niezbędne do zrozumienia sposobu funkcjonowania światów przytoczonych w prezentacji. W miarę postępu technologicznego, polegającego m.in. na puszczeniu w obieg nowych urządzeń cyfrowych oraz eksperymentach umożliwiających tworzenie mutantów, rośnie ryzyko, że władza zacznie przyjmować dyktatorski charakter. To z kolei zwiększa zagrożenie inwigilacji i ciągłej kontroli nad obywatelami. Autorki przedstawiają różne sposoby, jak jednostki autorytarne sprawują kontrolę i dążą do zastraszenia społeczeństwa na podstawie wybranych dzieł. Rozwój technologii nie staje się tym samym udogodnieniem dla człowieka, które zapewniałoby mu wolność, a środkiem skutecznego nadzoru nad obywatelem. Przedstawione w projekcie zostają również różne wizje buntu, jaki jednostka może względem autorytaryzmu podejmować. Autorki stawiają pytanie: jak bliska jest wizja przyszłości ukazana w omawianych dziełach oraz jak skutecznie bronić się przed inwigilacją?</div>
+                <div class="project-author">Autorzy: Wiktoria Piwowarska, Julia Ciszewska, Aleksandra Rożkowicz</div>
+            </div>
+        </div>
+        <div class="project-section" id="project3">
+            <div class="project-section-left">
+<video width="100%" height="650" controls>
+                <source src="kopiuj.mp4" type="video/mp4">
+            </video>
+<div style="text-align: center">
+        <a href="https://www.youtube.com/watch?v=-UD8DSM_69U&list=PLeumE3xJG7HcY_H7e4PNIU09K1VKdzPBa&index=3" target="_blank">
+            <img src="pro.png" style="border: 0" alt="tekst alternatywny">
+        </a>
+    </div>
+            </div>
+            <div class="project-section-right">
+                <div class="project-title">Kopiuj-wklej? O klonowaniu w perspektywie transhumanistycznej</div>
+                <div class="project-text">Autorzy filmu <em>Kopiuj-wklej? O klonowaniu w perspektywie transhumanistycznej</em> badają temat klonowania z perspektywy filozoficznej i literackiej. Film rozpoczyna się od wprowadzenia do tematu, po czym przedstawione zostają teoretyczne rozważania Pawła Łukowa z artykułu <em>Klonowanie, tożsamość i dyskryminacja</em>. Łukow argumentuje, że problemy tożsamości klonów są podobne do problemów grup uciskanych i że tożsamość kształtuje się przez społeczne interakcje, a nie przez DNA. Film porusza pytania o naruszenie godności i tożsamości klonów, sugerując, że klonowanie nie powiela tożsamości, gdyż osobowość kształtują okoliczności życia. Klony mogą zastępować ważne osoby, ale mogą prowadzić do dehumanizacji i problemów z samoidentyfikacją. W części literackiej w filmie zostało omówione opowiadanie <em>Horacy Kalibang albo automaty</em> Holmberga, w którym klony są mechanicznymi kopiami ludzi, oraz powieść <em>Możliwość wyspy</em> Michela Houellebecqa, gdzie klonowanie daje możliwość nieśmiertelności przez biologiczną replikację. Utwór intermedialny <em>Dual</em> reżyserii Riley Stearns przedstawia techniczne i etyczne aspekty klonowania, skupiając się na konsekwencjach aktu klonowania, ukazując klony jako "dublerów". Relacja między Sarah a jej klonem ewoluuje od rywalizacji do współpracy, choć różnice między nimi stają się coraz bardziej widoczne. W filmie zostaje także poruszony problem relacji klona i oryginału. Dublerka Sarah nie jest szczęśliwa w swoim nowym życiu – nasuwa to pytanie o to, czy udoskonalony klan faktycznie może górować nad pierwowzorem. Film <em>Kopiuj-wklej? O klonowaniu w perspektywie transhumanistycznej</em> koczy się refleksją na temat tego, czy można uzasadnić postępowanie klona w filmie <em>Dual</em>. Możliwe, że pasożytnicze zawłaszczenie tożsamości uzasadnione może być pewnego rodzaju sposobem walki o przetrwanie. Kobiety miały być identyczne, a w praktyce od samego początku znacząco się różnią, a te różnice się pogłębiają.</div>
+                <div class="project-author">Autorzy: Maja Kuzińska, Emilia Herok, Karol Skwarczyński</div>
+            </div>
+        </div>
+        <div class="project-section" id="project4">
+            <div class="project-section-left">
+            <video width="100%" height="650" controls>
+                <source src="cyfrowa.mp4" type="video/mp4">
+            </video>
+<div style="text-align: center">
+        <a href="https://www.youtube.com/watch?v=LV-MOFTv-xM&list=PLeumE3xJG7HcY_H7e4PNIU09K1VKdzPBa&index=1" target="_blank">
+            <img src="pro.png" style="border: 0" alt="tekst alternatywny">
+        </a>
+    </div>
+            </div>
+            <div class="project-section-right">
+                <div class="project-title">Cyfrowa nieśmiertelność – szanse, zagrożenia i transhumanistyczne założenia​</div>
+                <div class="project-text">Cyfrową nieśmiertelnością nazywany jest hipotetyczny koncept magazynowania ludzkiego umysłu w podmiocie cyfrowym – awatarze lub programie, który zachowuje się jak jego biologiczny oryginał. Na podstawie dwóch dzieł kultury, tj. filmie Transcendencja oraz książce Perfekcyjna niedoskonałość Jacka Dukaja, autorzy projektu przedstawiają zawiłą pod wieloma względami ideę przyszłości. W materiale rozważane są różne problemy związane z egzystencją oderwanego od fizycznej postaci bytu, m.in. prawne, etyczne, społeczne, religijne, dotyczące także władzy, a nawet tyranii. Padają również ważne pytania: czy to jeszcze człowiek? Jak można zdefiniować tożsamość przeniesionej świadomości? Oprócz możliwych zagrożeń płynących z cyfryzacji swojej osoby, autorzy podają także pozytywne aspekty takiej zmiany. Usprawniony do granic możliwości transport, w kontekście fizycznego przenoszenia się drogą teleportacji, ale i bezprzewodowej komunikacji pomiędzy umysłami ludzi, stanowi nadzieję dla człowieka i jego przyszłości.</div>
+                <div class="project-author">Autorzy: Amelia Boufenghour, Dominik Langiewicz​​</div>
+            </div>
+        </div>
+        <div class="project-section" id="project5">
+            <div class="project-section-left">
+            <video width="100%" height="650" controls>
+                <source src="płeć.mp4" type="video/mp4">
+            </video>
+<div style="text-align: center">
+        <a href="https://www.youtube.com/watch?v=xauhWRzrW2o&list=PLeumE3xJG7HcY_H7e4PNIU09K1VKdzPBa&index=2" target="_blank">
+            <img src="pro.png" style="border: 0" alt="tekst alternatywny">
+        </a>
+    </div>
+            </div>
+            <div class="project-section-right">
+                <div class="project-title">Płeć niczym cudowność barokowych paproci – narracje  płci z perspektywy transhumanizmu</div>
+                <div class="project-text">Cyborg jest figurą niezwykle charakterystyczną dla transhumanistycznych tekstów. Wpisuje się zarówno w optymistyczne narracje o nowym, ulepszonym człowieku, jak i w kategorię groźnego obcego. Głównym problemem prezentacji jest refleksja nad tym, co o człowieku i jego cielesności i płciowości, mówi transhumanistyczna figura cyborga. Podstawą teoretyczną prezentacji jest tekst Donny Haraway – <em>Manifest cyborga </em>. Autorki sięgnęły również do literatury science-fiction, a konkretniej książki <em>Zabójcza sprawiedliwość </em> Ann Leckie. Rozważania domykają przykłady z filmu <em>Teknolust </em> w reżyserii Lynn Hershman-Leeson. Na podstawie tekstów kultury podjęte zostają problemy badawcze, m.in. hybrydyczność cyborga czy jego płciowość. Pojawia się również refleksja nt. samego tekstu, a zatem nad językiem, estetyką i środkami wyrazu, ściśle przenikające znaczenie tekstu. Autorki m.in. przedstawiają, dlaczego cyborg nie ma seksualności i należy do świata postpłci, a więc dlaczego również nie istnieją norma i wykluczenie. Ważnym elementem w rozważaniach Autorek jest postulowana przez Haraway ironia. Dzięki niej cyborg dekonstruuje utarte sądy i staje się metaforą koniecznej zmiany. Figura cyborga pozwala na odejście od heteronormatywnego spojrzenia związanego z antropocentryzmem.</div>
+                <div class="project-author">Autorzy: Anastazja Czarkowska, Katarzyna Nowacka, Agnieszka Mentel</div>
+            </div>
+        </div>
+        <div class="project-section" id="project6">
+            <div class="project-section-left">
+            <video width="100%" height="650" controls>
+                <source src="etyczne.mp4" type="video/mp4">
+            </video>
+<div style="text-align: center">
+        <a href="https://www.youtube.com/watch?v=VmQmN2T6GaA&list=PLeumE3xJG7HcY_H7e4PNIU09K1VKdzPBa&index=6" target="_blank">
+            <img src="pro.png" style="border: 0" alt="tekst alternatywny">
+        </a>
+    </div>
+            </div>
+            <div class="project-section-right">
+                <div class="project-title">Etyczne problemy w XIX-wiecznych i quasi-wiktoriańskich prefiguracjach transhumanizmu. Wokół odpowiedzialności twórcy wobec doświadczeń egzystencjalnych postczłowieka</div>
+                <div class="project-text">Prezentacja podejmuje refleksję na temat doświadczeń egzystencjalnych postczlowieka na przykładzie dwóch sylwetek – stwora z książki <em>Frankenstein</em> autorstwa Mary Wollstonecraft Shelley oraz Belli z filmu <em>Biedne istoty</em> w reżyserii Yorgosa Lanthimosa. Na przykładzie <em>Frankensteina</em> omówione zostają okoliczności powstania oraz „dojrzewania” potwora, jego podejście do człowieka oraz rozterki z którymi się zmaga i relacja z jego twórcą. Postać Belli z <em>Biednych istot</em> zostaje postawiona w stosunku do stwora zarówno w opocyzji jak i wskazane zostają podobieństwa między nimi. Pojawia się również dogłębne przedstawienia twórców tych istot, ich motywacji do stworzenia swojego dzieła oraz pozycji społecznych i doświadczeń życiowych, które znacznie wpływają na ich podejście do swych „dzieci”. Autorki omawiają również obecne w utworach nawiązania do społecznych problemów i realiów przedstawionego w nich świata. Głównymi problemami, które podejmuje prezentacja są: kwestia odpowiedzialności twórcy wobec dzieła (który tworząc je powinien również się nim zaopiekować, mając na uwagę, że jest to istota ze świadomością) oraz to jak aparycja wpływa na miejsce w świecie i podejście innych.</div>
+                <div class="project-author">Autorzy: Oktawia Rudnicka, Zuzanna Janiszyn, Magdalena Brandys</div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="project-title-section" id="transhumanism-culture">
+        Teksty kultury dotyczące transhumanizmu
+    </div>
+    <div class="carousel-container">
+        <button class="carousel-button left" onclick="scrollCarousel(-1)">&#9664;</button>
+        <div class="carousel">
+            <img src="image1.jpg" alt="Obrazek 1">
+            <img src="image2.jpg" alt="Obrazek 2">
+            <img src="image3.jpg" alt="Obrazek 3">
+            <img src="image4.jpg" alt="Obrazek 4">
+            <img src="image5.jpg" alt="Obrazek 5">
+            <img src="image6.jpg" alt="Obrazek 6">
+            <img src="image7.jpg" alt="Obrazek 7">
+            <img src="image8.jpg" alt="Obrazek 8">
+            <img src="image9.jpg" alt="Obrazek 9">
+            <img src="image10.jpg" alt="Obrazek 10">
+            <img src="image11.jpg" alt="Obrazek 11">
+        </div>
+        <button class="carousel-button right" onclick="scrollCarousel(1)">&#9654;</button>
+    </div>
+    <div class="overlay" id="overlay" onclick="hideImage()">
+        <span class="close-btn" onclick="hideImage()">×</span>
+        <img id="overlay-img" src="" alt="Powiększony obrazek">
+    </div>
+    <div class="project-title-section" id="bibliography" onclick="toggleBibliographyList()">
+        Bibliografia
+    </div>
+    <div class="bibliography-list bibliography-list-hidden">
+        <ul>
+            <li>Dziadek, A., <em>Atopia: stadność i jednostkowość</em>, „Teksty Drugie” 2008, nr 1/2, s. 237-243.</li>
+            <li>Eco, U., <em>Nauka i fantastyka</em>, w: <em>Spór o SF: Antologia szkiców i esejów o science fiction</em>, red. R. Handke, Poznań 1989, s. 170-178.</li>
+            <li>Maj, K., <em>Światy poza światem. Od świata przedstawionego do narracji światocentrycznej</em>, w: <em>Narracje fantastyczne</em>, red. tenże, K. Olkusz, Kraków 2017, s. 15-59.  </li>
+            <li>Roskal, Z. E., <em>(Astro)humanistyka w transhumanistycznym świecie</em>, „Ethos” 2015, nr 3 (111), t. 28, s. 252-265.</li>
+            <li>Sobota, J., <em>Literackie wizje życia rozumnego w kosmosie i ich konsekwencje metafizyczne, epistemologiczne i aksjologiczne</em>, „Studia Philosophiae Christianae” 2016, nr 3, s. 175 – 193.</li>
+            <li>Waldenfels, B., <em>Myśleć obce</em>, tłum. F. Borek, „Etyka” 2019, R. 58, nr 1, s. 15-26.</li>
+            <li>Harraway D., <em>A manifesto for cyborgs: Science, technology, and socialist feminism in the 1980s</em>, “Socialist Review” 1985, nr 80, s. 65-108.</li>
+            <li>Leckie A., <em>Zabójcza sprawiedliwość</em>, Warszawa 2015.</li>
+            <li>More N. V., <em>Primo Posthuman 3M+</em>, 2000.</li>
+            <li>Elbehiery K., Elbehiery H., <em>Teleportation; Next Leap to Outer Space</em>, [w:] <em>Digital Transformation Technology: Proceedings of ITAF 2020</em>, Singapore 2022.</li>
+            <li>Kurzweil R., <em>Nadchodzi osobliwość. Kiedy człowiek przekroczy granice biologii</em>, tłum. E. Chodkowska, A. Nowosielska, Warszawa 2013.</li>
+            <li>Pijnenburg M. A. M., Leget C., <em>Who wants to live forever? Three arguments against extending the human lifespan</em>, “Journal of Medical Ethics” 2007 (R. XXXIII), z. 10, s. 585-587.</li>
+            <li>Savin-Baden M., Burden D., <em>Digital immortality and virtual humans</em>, “Postdigital Science and Education” 2019 (R. I), z. 1, s. 87-103.</li>
+            <li>Savin-Baden M., Burden D., Taylor H., <em>The ethics and impact of digital immortality</em>, “Knowledge Cultures” 2017 (R. V), z. 2, s. 178-196.</li>
+            <li>Swan L. Z., Howard J., <em>Digital immortality: Self or 0010110?</em>, “International Journal of Machine Consciousness” 2012 (IV), z. 1, s. 245-256.</li>
+            <li>Głażewski M., <em>Dystopia albo ontologia Zło-bytu</em>, Zielona Góra 2010 [dostęp: Dystopia albo ontologia Zło-bytu (infona.pl)].</li>
+            <li>Maj K., <em>Światy władców logosu. O dystopii w narracjach literackich</em>, Białystok 2021 [dostęp: https://repozytorium.uwb.edu.pl/jspui/handle/11320/10350].</li>
+            <li>Maj K., <em>Utopia, czyli tam i z powrotem. O założeniach światotwórczych narracji eu- i dystopijnych</em>, “WIELOGŁOS Pismo Wydziału Polonistyki UJ”, 2014, 3 (21), s. 37–49.</li>
+            <li>Łuków, Paweł. „Klonowanie, tożsamość i dyskryminacja.” <em>Przegląd Filozoficzny</em> – Nowa Seria, 1999, R. VIII, Nr 1 (29).</li>
+        </ul>
+    </div>
+    <script>
+        function showImage(src) {
+            const overlay = document.getElementById('overlay');
+            const overlayImg = document.getElementById('overlay-img');
+            overlayImg.src = src;
+            overlay.classList.add('visible');
+        }
+
+        function hideImage() {
+            const overlay = document.getElementById('overlay');
+            overlay.classList.remove('visible');
+        }
+
+        let currentIndex = 0;
+
+        function scrollCarousel(step) {
+            const carousel = document.querySelector('.carousel');
+            const totalImages = carousel.children.length;
+            const visibleImages = 3;
+            currentIndex += step;
+
+            if (currentIndex < 0) {
+                currentIndex = totalImages - visibleImages;
+            } else if (currentIndex > totalImages - visibleImages) {
+                currentIndex = 0;
+            }
+
+            const offset = -currentIndex * (300 + 60); // 200px width + 10px margin
+            carousel.style.transform = `translateX(${offset}px)`;
+        }
+        function toggleBibliographyList() {
+    const bibliographyList = document.querySelector('.bibliography-list');
+    bibliographyList.classList.toggle('bibliography-list-visible');
+}
+    </script>
+</body>
+<footer class="footer">
+    <div class="footer-content">
+        <p><strong>Przygotowanie strony internetowej:</strong> Alicja Niedźwiedzka, Martyna Lalik</p>
+        <p><strong>Autorzy projektów:</strong> Karolina Majcherek, Jakub Polakowski, Wiktoria Piwowarska, Julia Ciszewska, Aleksandra Rożkowicz, Maja Kuzińska, Emilia Herok, Karol Skwarczyński, Amelia Boufenghour, Dominik Langiewicz​​, Anastazja Czarkowska, Katarzyna Nowacka, Agnieszka Mentel, Oktawia Rudnicka, Zuzanna Janiszyn, Magdalena Brandys</p>
+        <p><strong>Opracowanie projektów:</strong> Małgorzata Groele, Wiktoria Bębenek, Magdalena Kosińska, Alicja Niedźwiedzka, Mikołaj Zachwieja, Wiktoria Mizerna, Martyna Lalik</p>
+        <p><strong>Opieka merytoryczna:</strong> dr hab. Anita Całek, prof UJ, Katedra Komparatystyki Literackiej Wydziału Polonistyki UJ</p>
+    </div>
+</footer>
+</html>
